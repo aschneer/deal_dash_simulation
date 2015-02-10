@@ -23,4 +23,6 @@ function [auctionPriceCost] = calcAuctionPriceCost(bidPrice,auctionPrice)
     % Cost of getting auction price to where
     % it currently is.
     auctionPriceCost = (bidCostValueRatio * auctionPrice);
+    
+    return;
 end
