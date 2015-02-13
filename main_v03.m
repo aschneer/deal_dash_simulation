@@ -44,10 +44,11 @@ clc;
 % ===================================================== %
 
 % User-defined parameters for simulation.
-buyItNowPrice = 90.00;
+buyItNowPrice = 22.50;
 bidPrice = 0.15;
-numBidders = 40;
+numBidders = 42;
 auctionPriceResolution = 0.50;
+finalSaleFractionResponsibleFor = 1.0;
 
 % ===================================================== %
 
@@ -55,14 +56,14 @@ auctionPriceResolution = 0.50;
 
 % Create a range of hypothetical final
 % auction prices to test.
-finalAuctionPriceRange = [1.00:auctionPriceResolution:buyItNowPrice];
+finalAuctionPriceRange = [1.00:auctionPriceResolution:(1.10 * buyItNowPrice)];
 % Assuming each bidder wastes the same number of
 % bids getting the auction price to its final value,
 % and all the bids were purchased for the same price,
 % calculate the cost per bidder in used-bids.
 auctionPriceBurdenPerBidder = (finalAuctionPriceRange .* (bidPrice ./ 0.01) ./ numBidders);
 % Calculate the total cost for the winner.
-totalCost = (finalAuctionPriceRange + auctionPriceBurdenPerBidder);
+totalCost = ((finalSaleFractionResponsibleFor .* finalAuctionPriceRange) + auctionPriceBurdenPerBidder);
 
 % Data analysis.
 
